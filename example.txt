@@ -1,0 +1,69 @@
+Example File
+============
+
+This is an example file that demonstrates how wrap works. Using it you can wrap lines of already formatted but not wrapped plain text files. To demonstrate how that works run:
+
+    ./build/bin/wrap -f examples/example.txt
+
+This program indents wrapped lines to:
+- Existing indentation of non-breaking spaces.
+  If the existing indentation alone is longer than the length to which lines shall be wrapped the indendation is set to zero.
+- Indentation marks consisting of two spaces '  ' or tab (two U+0020 or U+0009) before non-space.
+- Definition list items marked by '<term> ... <definition>' or more dots indent to the start of <definition>.
+- List items marked by '- <text>' or '* <text>' (a single U+0020 space after '-' or '*') indent to the start of <text>.
+
+Instead of reading from a file you can pass lines as non-option arguments to the program.
+
+Per default it automatically uses the width of your terminal. If that cannot be determined it falls back to a maximum line length of 80 characters. If you want to specify the maximum line length manually you can use use the --line-lengh / -l option.
+
+Text needs to be valid UTF-8. It tries to be a bit intelligent about graphemes, but it doesn't have complete unicode support at all.
+
+For demonstration purposes, a nested list:
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit ligula nec diam semper dapibus.
+- Morbi sollicitudin venenatis nibh. Proin quis lorem rutrum, viverra ligula nec, auctor neque.
+- Proin viverra nisl eget neque interdum fermentum. Nam ex dolor, sodales in elementum id, accumsan eget sem.
+  * Fusce et dapibus sem, id aliquam dui. Nunc semper risus at purus hendrerit accumsan.
+  * Phasellus mollis malesuada magna a lobortis. Vestibulum feugiat convallis diam, vel facilisis nulla suscipit in.
+    - Pellentesque congue lacinia volutpat. Proin pellentesque nibh et nisl feugiat, vel convallis magna sodales.
+- Curabitur vitae ex maximus, ullamcorper tortor non, condimentum dui. Fusce nec dolor a orci vulputate finibus at id neque.
+
+Indented text:
+    Fusce nibh augue, elementum sit amet tristique in, lobortis sed orci. Sed dignissim leo sed felis ultricies maximus.
+
+        Phasellus dignissim rutrum eleifend. Morbi ultricies ante et nisl porta, quis venenatis mauris commodo.
+
+        Nullam ac pharetra enim, ac pharetra tellus. Aliquam euismod sed nunc quis vehicula.
+
+    Vivamus dignissim eleifend vulputate.
+
+Indentation marks:
+    Phasellus turpis nisl:      convallis tempus elementum in, malesuada eget magna. Morbi eget pharetra turpis, a pretium mauris.
+    Nam laoreet:                eu velit at fermentum. Sed tempus urna porta metus blandit placerat. Mauris quis sagittis lacus.
+                                Fusce non urna et mi efficitur sollicitudin. Aenean non euismod lectus.
+    Also tabs:			Should work the same. Fusce non urna et mi efficitur sollicitudin. Aenean non euismod lectus.
+    More tabs at some point:	This too. Fusce non urna et mi efficitur sollicitudin. Aenean non euismod lectus.
+
+Definition lists:
+
+    Vestibulum .... nec orci et tellus vehicula vestibulum et non nisl. Pellentesque vitae magna sed diam gravida aliquet.
+    Nam ........... facilisis pretium velit et facilisis. Nulla arcu sapien, ultricies id placerat in, vestibulum et odio.
+                    Praesent pellentesque quis dolor vitae finibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Quisque ....... orci mi, mattis ac vulputate quis, venenatis quis massa. Praesent laoreet, orci vel fermentum fringilla, neque ligula ultricies dolor, non rutrum turpis odio at urna.
+                    Donec ... auctor non ligula sed commodo. Ut laoreet, augue nec posuere gravida, lectus ligula venenatis ipsum, finibus eleifend erat metus pretium tortor.
+                    Sed ..... vestibulum dictum massa. Sed sed nisi ac tellus lobortis sagittis vitae sit amet nunc.
+
+And just a long paragraph:
+Sed dignissim, tortor sit amet aliquam pulvinar, neque magna imperdiet arcu, ut lacinia magna leo ac nibh. Duis pellentesque convallis massa vitae pharetra. Proin eget odio lacus. Vestibulum tincidunt libero vel imperdiet maximus.
+
+Lines with unicode:
+Umlauts and sharp S: öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ
+Decomposed normal form: öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ öäü ÖÄÜ ßẞ
+
+Emojis: (not entierly correct, because of oversimplified assumptions)
+😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄 😄
+💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩 💩
+🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶 🎶
+☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️ ☃️
+
+
+Other: € µ ł ¶ ŧ ← ↓ → ø þ ¨ ~ æ ſ ð đ ŋ ħ ̣ ĸ ł ˝ ^ ’ | » « ¢ „ “ ” · … – — € µ ł ¶ ŧ ← ↓ → ø þ ¨ ~ æ ſ ð đ ŋ ħ ̣ ĸ ł ˝ ^ ’ | » « ¢ „ “ ” · … – —
