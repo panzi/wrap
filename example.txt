@@ -25,6 +25,22 @@ For demonstration purposes, a nested list:
   * Fusce et dapibus sem, id aliquam dui. Nunc semper risus at purus hendrerit accumsan.
   * Phasellus mollis malesuada magna a lobortis. Vestibulum feugiat convallis diam, vel facilisis nulla suscipit in.
     - Pellentesque congue lacinia volutpat. Proin pellentesque nibh et nisl feugiat, vel convallis magna sodales.
+      - This is a very deeply nested part.
+        - It goes deeper and deeper.
+          - This demonstrates how it behaves when the list indentation is already wider than the available space.
+            - For that I have to make a lot of items.
+              - Really a lot.
+                - More than this.
+                  - Or than that.
+                    - Still more.
+                      - Still not realistically deep enough.
+                        - Deeper
+                          - And deeper
+                            - And deeper
+                              - And even deeper still
+                                - Slowly it gets deep enough.
+                                                - What am I doing, nobody said I can only indent using tow spaces.
+                                                                                                        - The End.
 - Curabitur vitae ex maximus, ullamcorper tortor non, condimentum dui. Fusce nec dolor a orci vulputate finibus at id neque.
 
 Indented text:
