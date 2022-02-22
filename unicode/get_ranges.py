@@ -53,14 +53,17 @@ def gen_expr(ranges: List[Tuple[int, int]], nesting: int=0) -> None:
         left  = ranges[:mid]
         right = ranges[mid:]
         indent = ' ' * (nesting * INDENT_WIDTH)
-        print(indent + '(codepoint <= 0x%05X ?' % left[-1][1])
         sub_nesting = nesting + 1
-        if len(left) == 1:
-            sub_indent = ' ' * (sub_nesting * INDENT_WIDTH)
-            print(sub_indent + 'codepoint >= 0x%05X' % left[0][0], end='')
+        if len(left) == 1 and left[0][0] == left[0][1]:
+            print(indent + '(codepoint == 0x%05X ||' % left[0][0])
         else:
-            gen_expr(left, sub_nesting)
-        print(' :')
+            print(indent + '(codepoint <= 0x%05X ?' % left[-1][1])
+            if len(left) == 1:
+                sub_indent = ' ' * (sub_nesting * INDENT_WIDTH)
+                print(sub_indent + 'codepoint >= 0x%05X' % left[0][0], end='')
+            else:
+                gen_expr(left, sub_nesting)
+            print(' :')
         gen_expr(right, sub_nesting)
         print(')', end='')
 
